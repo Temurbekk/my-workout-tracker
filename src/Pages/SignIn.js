@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState} from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -26,19 +26,7 @@ function Copyright() {
   );
 }
 
-const initialUser={id:null,email:"",password:"",error:null,auth: null}
 
-const handleSubmit = e => {
-
-}
-
-const handleChange = e => {
-
-}
-
-const isValid =()=>{
-  
-}
 
 
 const useStyles = makeStyles((theme) => ({
@@ -61,9 +49,24 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignIn() {
+const SignIn = () => {
   const classes = useStyles();
 
+  const initialUser={id:null,email:"",password:"",error:null,auth: null};
+
+const [user, setUser] = useState(initialUser);
+
+const handleSubmit = e => {
+  e.preventDefault()
+}
+
+const handleChange = e => {
+  const {name,value} = e.target;
+  setUser({...user,[name]:value})
+};
+
+const isValid = user.email === '' || user.password === '';
+  console.log(user);
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -129,3 +132,5 @@ export default function SignIn() {
     </Container>
   );
 }
+
+export default SignIn;
