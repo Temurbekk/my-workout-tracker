@@ -1,11 +1,15 @@
 import React,{useState} from 'react';
+import { withFirebase } from '../Components/Firebase';
+import { Link, withRouter } from 'react-router-dom';
+
+
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
-import Link from '@material-ui/core/Link';
+// import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
@@ -50,24 +54,34 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const SignIn = () => {
+const SignIn = (props) => {
   const classes = useStyles();
 
   const initialUser={id:null,email:"",password:"",error:null,auth: null};
 
 const [user, setUser] = useState(initialUser);
 
+const handleChange = e => {
+  const {name, value} = e.target;
+  setUser({...user, [name]: value})
+};
+
 const handleSubmit = e => {
-  e.preventDefault()
+  props.firebase.doSignInWithEmailAndPassword(user.email, user.password)
+    .then(authUser => {
+      setUser({initialUser})
+      props.history.push("/dashboard");
+    })
+    .catch(error => {
+      setUser({...user, error: error.message})
+    });
 }
 
-const handleChange = e => {
-  const {name,value} = e.target;
-  setUser({...user,[name]:value})
-};
 
 const isValid = user.email === '' || user.password === '';
   console.log(user);
+
+
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -101,7 +115,11 @@ const isValid = user.email === '' || user.password === '';
             type="password"
             id="password"
             autoComplete="current-password"
+            onChange ={handleChange}
           />
+          <Typography className={classes.error}>
+              {user.error ? user.error : ''}
+            </Typography>
           <Button
             type="submit"
             fullWidth
@@ -134,4 +152,4 @@ const isValid = user.email === '' || user.password === '';
   );
 }
 
-export default SignIn;
+export default withRouter(withFirebase(SignIn));
