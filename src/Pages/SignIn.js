@@ -26,6 +26,21 @@ function Copyright() {
   );
 }
 
+const initialUser={id:null,email:"",password:"",error:null,auth: null}
+
+const handleSubmit = e => {
+
+}
+
+const handleChange = e => {
+
+}
+
+const isValid =()=>{
+  
+}
+
+
 const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(8),
@@ -59,7 +74,7 @@ export default function SignIn() {
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
-        <form className={classes.form} noValidate>
+        <form className={classes.form} noValidate onSubmit={e=>e.preventDefault()}>
           <TextField
             variant="outlined"
             margin="normal"
@@ -70,6 +85,7 @@ export default function SignIn() {
             name="email"
             autoComplete="email"
             autoFocus
+            onChange ={handleChange}
           />
           <TextField
             variant="outlined"
@@ -82,16 +98,14 @@ export default function SignIn() {
             id="password"
             autoComplete="current-password"
           />
-          <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
-          />
           <Button
             type="submit"
             fullWidth
             variant="contained"
             color="primary"
             className={classes.submit}
+            onClick={handleSubmit}
+            disabled={isValid}
           >
             Sign In
           </Button>
