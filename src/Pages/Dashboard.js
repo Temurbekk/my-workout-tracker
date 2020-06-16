@@ -1,21 +1,20 @@
 import React from "react";
 
 import { AuthUserContext, withAuthentication } from "../Components/Session";
-import { withRouter } from "react-router-dom";
+import { withRouter, useRouteMatch } from "react-router-dom";
 
-import { Switch, Route, useRouteMatch } from "react-router-dom";
-
-import clsx from "clsx";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import Box from "@material-ui/core/Box";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
-import IconButton from "@material-ui/core/IconButton";
-import Badge from "@material-ui/core/Badge";
-import Container from "@material-ui/core/Container";
-import MenuIcon from "@material-ui/icons/Menu";
-import NotificationsIcon from "@material-ui/icons/Notifications";
+import {
+  clsx,
+  CssBaseline,
+  AppBar,
+  Toolbar,
+  Typography,
+  IconButton,
+  Badge,
+  Container,
+  MenuIcon,
+  NotificationsIcon,
+} from "../MaterialUI";
 
 import useStyles from "../config/theme.dashboard";
 
@@ -79,7 +78,7 @@ function Dashboard(props) {
                 </IconButton>
               </Toolbar>
             </AppBar>
-            
+
             <Sidebar
               signOut={signOut}
               open={open}
