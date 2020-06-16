@@ -13,7 +13,7 @@ import {
   makeStyles,
   Container,
 } from "../MaterialUI";
-import PasswordForget from "../Components/PasswordForget/Index";
+import PasswordForget from "../Components/PasswordForget";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
