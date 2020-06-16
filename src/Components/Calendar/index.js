@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
 import moment from "moment";
 
-import Grid from "@material-ui/core/Grid";
+
+import Grid from '@material-ui/core/Grid';
+
+import Snackbar from '@material-ui/core/Snackbar';
 
 import CalendarBody from "./CalendarBody";
 import CalendarHead from "./CalendarHead";
@@ -95,6 +98,14 @@ function Calendar(props) {
         </>
     </Paper>
 </Grid>
+<Snackbar
+                anchorOrigin={{
+                    vertical: 'bottom',
+                    horizontal: 'right',
+                }}
+                open={openSnackbar}
+                message={snackbarMsg}
+            />
     </Grid>
   );
 }
