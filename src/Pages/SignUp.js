@@ -8,7 +8,6 @@ import {
   CssBaseline,
   TextField,
   Paper,
-  Box,
   Grid,
   LockOutlinedIcon,
   Typography,
@@ -138,10 +137,9 @@ function SignUp(props) {
             </Button>
             <Grid container>
               <Grid item>
-                <Link to="/">{"Already have an account? Sign In"}</Link>
+                <Link to="/signIn">{"Already have an account? Sign In"}</Link>
               </Grid>
             </Grid>
-            <Box mt={5}>{/* /<Copyright /> */}</Box>
           </form>
         </div>
       </Grid>
