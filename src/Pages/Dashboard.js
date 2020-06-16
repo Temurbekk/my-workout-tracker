@@ -22,19 +22,29 @@ import MenuIcon from '@material-ui/icons/Menu';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 
 import useStyles from '../config/theme.dashboard';
-// import Copyright from '../components/Copyright';
+import Sidebar from '../Components/Sidebar';
+
+
 
 function Dashboard(props) {
   let match = useRouteMatch();
 
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
+ 
+ 
   const handleDrawerOpen = () => {
     setOpen(true);
   };
   const handleDrawerClose = () => {
     setOpen(false);
   };
+
+
+  const signOut = () => {
+    props.firebase.auth.signOut();
+    props.history.push("/");
+    }
 
   return (
         <div className={classes.root}>
@@ -64,7 +74,12 @@ function Dashboard(props) {
             </Toolbar>
             </AppBar>
 
-            Sidebar
+            <Sidebar 
+                    signOut={signOut} 
+                    open={open} 
+                    handleDrawerClose={handleDrawerClose} 
+                />
+
 
             <main className={classes.content, !open ? classes.contentClosed : classes.appBarShift }>
             <div className={classes.appBarSpacer} />
