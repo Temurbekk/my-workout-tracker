@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { withFirebase } from "../Components/Firebase";
 import { Link, withRouter } from "react-router-dom";
-import PasswordForget from "../Components/PasswordForget/Index";
+import PasswordForget from "../Components/PasswordForget";
 
 import {
   Avatar,
