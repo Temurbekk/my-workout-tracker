@@ -10,7 +10,7 @@ import CalendarBody from "./CalendarBody";
 import CalendarHead from "./CalendarHead";
 import Paper from '@material-ui/core/Paper';
 import AddActivity from '../AddActivity/AddActivity';
-
+import ActivityList from '../ActivityList/index'
 
 
 function Calendar(props) {
@@ -61,6 +61,24 @@ function Calendar(props) {
   const [openSnackbar, setOpenSnackbar] = React.useState(false);
   const [snackbarMsg, setSnackbarMsg] = React.useState(null);
   
+ /*** ACTIVITY LIST ***/
+const [activities, setActivities] = useState(true);
+const [loading, setLoading] = useState([]);
+
+const retrieveData = () => {
+
+
+  let queryDate = `${selectedDay.day}-${selectedDay.month}-${selectedDay.year}`;
+
+  let ref = firebase.db.ref().child(`users/${authUser.uid}/activities`);
+  ref.orderByChild("date").equalTo(queryDate).on("value", snapshot => {
+      let data = snapshot.val();
+      setActivities(data);
+      setLoading(false);
+  });
+};
+
+useEffect(() => retrieveData());
 
   return (
     <Grid container spacing={3}>
@@ -96,6 +114,18 @@ function Calendar(props) {
                 setSnackbarMsg={setSnackbarMsg}
             />
         </>
+    </Paper>
+</Grid>
+<Grid item xs={12} md={7}>
+    <Paper className="paper">
+    <h3>Activities on {selectedDay.day}-{selectedDay.month + 1}</h3>
+    <ActivityList
+        loading={loading}
+        activities={activities}
+        authUser={props.authUser}
+        setOpenSnackbar={setOpenSnackbar}
+        setSnackbarMsg={setSnackbarMsg}
+    />
     </Paper>
 </Grid>
 <Snackbar
