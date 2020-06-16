@@ -1,5 +1,7 @@
 import app from "firebase/app";
 import "firebase/auth";
+import 'firebase/database';
+
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -17,7 +19,7 @@ class Firebase {
   constructor() {
     app.initializeApp(firebaseConfig);
     this.auth = app.auth();
-    // this.db = app.database(); Later add database
+    this.db = app.database();
   }
 
   /*** Authentication  ***/
@@ -30,6 +32,11 @@ class Firebase {
   doSignOut = () => this.auth.signOut();
 
   doPasswordReset = (email) => this.auth.sendPasswordResetEmail(email);
+
+  user = uid => this.db.ref(`users/${uid}`);
+  users = () => this.db.ref('users');
+
+
 }
 
 export default Firebase;
