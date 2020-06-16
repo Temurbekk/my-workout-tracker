@@ -1,35 +1,31 @@
-import React, { useState } from 'react';
-import { withFirebase } from '../Components/Firebase';
-import { Link, withRouter } from 'react-router-dom';
+import React, { useState } from "react";
+import { withFirebase } from "../Components/Firebase";
+import { Link, withRouter } from "react-router-dom";
 
-import Avatar from '@material-ui/core/Avatar';
-import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import TextField from '@material-ui/core/TextField';
-import Paper from '@material-ui/core/Paper';
-import Box from '@material-ui/core/Box';
-import Grid from '@material-ui/core/Grid';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
-
-
-//import useStyles from '../config/theme-signinup';
-//import Copyright from '../components/Copyright';
+import Avatar from "@material-ui/core/Avatar";
+import Button from "@material-ui/core/Button";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import TextField from "@material-ui/core/TextField";
+import Paper from "@material-ui/core/Paper";
+import Box from "@material-ui/core/Box";
+import Grid from "@material-ui/core/Grid";
+import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
+import Typography from "@material-ui/core/Typography";
+import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(8),
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
   },
   avatar: {
     margin: theme.spacing(1),
     backgroundColor: theme.palette.secondary.main,
   },
   form: {
-    width: '100%', // Fix IE 11 issue.
+    width: "100%", // Fix IE 11 issue.
     marginTop: theme.spacing(1),
   },
   submit: {
@@ -40,28 +36,36 @@ const useStyles = makeStyles((theme) => ({
 function SignUp(props) {
   const classes = useStyles();
 
-  const initialUser = {id: null, name: '', email: '', password: '', error: null, auth: null}
+  const initialUser = {
+    id: null,
+    name: "",
+    email: "",
+    password: "",
+    error: null,
+    auth: null,
+  };
 
   const [user, setUser] = useState(initialUser);
 
-  const handleChange = e => {
-    const {name, value} = e.target;
-    setUser({...user, [name]: value})
-  }
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setUser({ ...user, [name]: value });
+  };
 
-  const handleSubmit = e => {
-    props.firebase.auth.createUserWithEmailAndPassword(user.email, user.password)
-    // Later add user also to database
-    .then(authUser => {
-      setUser(initialUser);
-      props.history.push("/dashboard");
-    })
-    .catch(error => {
-      setUser({...user, error: error.message})
-    });
-  }
+  const handleSubmit = (e) => {
+    props.firebase.auth
+      .createUserWithEmailAndPassword(user.email, user.password)
+      // Later add user also to database
+      .then((authUser) => {
+        setUser(initialUser);
+        props.history.push("/dashboard");
+      })
+      .catch((error) => {
+        setUser({ ...user, error: error.message });
+      });
+  };
 
-  const isValid = user.name === '' || user.email === '' || user.password === '';
+  const isValid = user.name === "" || user.email === "" || user.password === "";
 
   return (
     <Grid container component="main" className={classes.root}>
@@ -75,10 +79,10 @@ function SignUp(props) {
           <Typography component="h1" variant="h5">
             Sign Up
           </Typography>
-          <form 
-            className={classes.form} 
+          <form
+            className={classes.form}
             noValidate
-            onSubmit={e => e.preventDefault()}
+            onSubmit={(e) => e.preventDefault()}
           >
             <TextField
               variant="outlined"
@@ -117,7 +121,7 @@ function SignUp(props) {
               onChange={handleChange}
             />
             <Typography className={classes.error}>
-              {user.error ? user.error : ''}
+              {user.error ? user.error : ""}
             </Typography>
             <Button
               type="submit"
@@ -132,19 +136,15 @@ function SignUp(props) {
             </Button>
             <Grid container>
               <Grid item>
-                <Link to="/">
-                  {"Already have an account? Sign In"}
-                </Link>
+                <Link to="/">{"Already have an account? Sign In"}</Link>
               </Grid>
             </Grid>
-            <Box mt={5}>
-              {/* /<Copyright /> */}
-            </Box>
+            <Box mt={5}>{/* /<Copyright /> */}</Box>
           </form>
         </div>
       </Grid>
     </Grid>
   );
-};
+}
 
 export default withRouter(withFirebase(SignUp));
