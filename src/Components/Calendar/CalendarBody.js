@@ -35,10 +35,11 @@ const CalendarBody = (props) => {
     let currDay, selectDay, activeDay;
 
     // Check if day is today
-    if (currentDay() == d && currentMonth() == actualMonth()) currDay = "today";
+    if (currentDay() === d && currentMonth() === actualMonth())
+      currDay = "today";
 
     // Check if day is selected day
-    if (selectedDay.day == d && currentMonthNum() == selectedDay.month)
+    if (selectedDay.day === d && currentMonthNum() === selectedDay.month)
       selectDay = "selected-day";
 
     monthDays.push(
