@@ -38,7 +38,7 @@ function PasswordForget(props) {
   const isInvalid = state.email === "";
   return (
     <div>
-      <Link to="/sign-in" onClick={handleClickOpen}>
+      <Link to="/signIn" onClick={handleClickOpen}>
         Forgot password?
       </Link>
       <Dialog
