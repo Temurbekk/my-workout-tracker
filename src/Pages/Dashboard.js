@@ -79,7 +79,7 @@ function Dashboard(props) {
                 </IconButton>
               </Toolbar>
             </AppBar>
-            <Calendar firebase={props.firebase} authUser={authUser} />
+            
             <Sidebar
               signOut={signOut}
               open={open}
