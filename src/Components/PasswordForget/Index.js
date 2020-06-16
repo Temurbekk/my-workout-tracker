@@ -9,9 +9,10 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Snackbar from "@material-ui/core/Snackbar";
+
 function PasswordForget(props) {
-  const [open, setOpen] = React.useState(false);
-  const [openAlert, setOpenAlert] = React.useState(false);
+  const [open, setOpen] = useState(false);
+  const [openAlert, setOpenAlert] = useState(false);
   const handleClickOpen = () => {
     setOpen(true);
   };
