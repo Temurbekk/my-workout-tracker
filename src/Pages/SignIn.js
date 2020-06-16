@@ -1,6 +1,7 @@
 import React,{useState} from 'react';
 import { withFirebase } from '../Components/Firebase';
 import { Link, withRouter } from 'react-router-dom';
+import PasswordForget from '../Components/PasswordForget/Index';
 
 
 import Avatar from '@material-ui/core/Avatar';
@@ -133,9 +134,10 @@ const isValid = user.email === '' || user.password === '';
           </Button>
           <Grid container>
             <Grid item xs>
-              <Link href="#" variant="body2">
+              <PasswordForget />
+              {/* <Link href="#" variant="body2">
                 Forgot password?
-              </Link>
+              </Link> */}
             </Grid>
             <Grid item>
               <Link href="#" variant="body2">
