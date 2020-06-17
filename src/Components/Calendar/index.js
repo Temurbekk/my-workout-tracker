@@ -1,17 +1,15 @@
 import React, { useState, useEffect } from "react";
 import moment from "moment";
 
+import Grid from "@material-ui/core/Grid";
 
-import Grid from '@material-ui/core/Grid';
-
-import Snackbar from '@material-ui/core/Snackbar';
+import Snackbar from "@material-ui/core/Snackbar";
 
 import CalendarBody from "./CalendarBody";
 import CalendarHead from "./CalendarHead";
-import Paper from '@material-ui/core/Paper';
-import AddActivity from '../AddActivity/AddActivity';
-import ActivityList from '../ActivityList/index'
-
+import Paper from "@material-ui/core/Paper";
+import AddActivity from "../AddActivity/AddActivity";
+import ActivityList from "../ActivityList/index";
 
 function Calendar(props) {
   const { firebase, authUser } = props;
@@ -60,36 +58,37 @@ function Calendar(props) {
 
   const [openSnackbar, setOpenSnackbar] = React.useState(false);
   const [snackbarMsg, setSnackbarMsg] = React.useState(null);
-  
- /*** ACTIVITY LIST ***/
-const [activities, setActivities] = useState(true);
-const [loading, setLoading] = useState([]);
 
-const retrieveData = () => {
+  /*** ACTIVITY LIST ***/
+  const [activities, setActivities] = useState(true);
+  const [loading, setLoading] = useState([]);
 
+  const retrieveData = () => {
+    let queryDate = `${selectedDay.day}-${selectedDay.month}-${selectedDay.year}`;
 
-  let queryDate = `${selectedDay.day}-${selectedDay.month}-${selectedDay.year}`;
+    let ref = firebase.db.ref().child(`users/${authUser.uid}/activities`);
+    ref
+      .orderByChild("date")
+      .equalTo(queryDate)
+      .on("value", (snapshot) => {
+        let data = snapshot.val();
+        setActivities(data);
+        setLoading(false);
+      });
+  };
 
-  let ref = firebase.db.ref().child(`users/${authUser.uid}/activities`);
-  ref.orderByChild("date").equalTo(queryDate).on("value", snapshot => {
-      let data = snapshot.val();
-      setActivities(data);
-      setLoading(false);
-  });
-};
+  useEffect(() => retrieveData(), [selectedDay]);
 
-useEffect(() => retrieveData());
+  /*** EDIT AN ACTIVITY ***/
+  const [editing, setEditing] = useState(false);
+  const [activity, setActivity] = useState(null);
+  const [activityKey, setActivityKey] = useState(null);
 
- /*** EDIT AN ACTIVITY ***/
- const [editing, setEditing] = useState(false);
- const [activity, setActivity] = useState(null);
- const [activityKey, setActivityKey] = useState(null);
-
- const editActivity = (activity, i) => {
-     setActivityKey(Object.keys(activities)[i]);
-     setEditing(true);
-     setActivity(activity);
- }
+  const editActivity = (activity, i) => {
+    setActivityKey(Object.keys(activities)[i]);
+    setEditing(true);
+    setActivity(activity);
+  };
 
   return (
     <Grid container spacing={3}>
@@ -115,40 +114,44 @@ useEffect(() => retrieveData());
         />
       </Grid>
       <Grid item xs={12} md={4} lg={3}>
-    <Paper className="paper">
-        <>
-            <h3>Add activity on {selectedDay.day}-{selectedDay.month + 1} </h3>
-            <AddActivity 
-                selectedDay={selectedDay} 
-                authUser={props.authUser}
-                setOpenSnackbar={setOpenSnackbar}
-                setSnackbarMsg={setSnackbarMsg}
+        <Paper className="paper">
+          <>
+            <h3>
+              Add activity on {selectedDay.day}-{selectedDay.month + 1}{" "}
+            </h3>
+            <AddActivity
+              selectedDay={selectedDay}
+              authUser={props.authUser}
+              setOpenSnackbar={setOpenSnackbar}
+              setSnackbarMsg={setSnackbarMsg}
             />
-        </>
-    </Paper>
-</Grid>
-<Grid item xs={12} md={7}>
-    <Paper className="paper">
-    <h3>Activities on {selectedDay.day}-{selectedDay.month + 1}</h3>
-    <ActivityList
-        loading={loading}
-        activities={activities}
-        authUser={props.authUser}
-        setOpenSnackbar={setOpenSnackbar}
-        setSnackbarMsg={setSnackbarMsg}
-        editActivity={editActivity}
-        setEditing={setEditing}
-    />
-    </Paper>
-</Grid>
-<Snackbar
-                anchorOrigin={{
-                    vertical: 'bottom',
-                    horizontal: 'right',
-                }}
-                open={openSnackbar}
-                message={snackbarMsg}
-            />
+          </>
+        </Paper>
+      </Grid>
+      <Grid item xs={12} md={7}>
+        <Paper className="paper">
+          <h3>
+            Activities on {selectedDay.day}-{selectedDay.month + 1}
+          </h3>
+          <ActivityList
+            loading={loading}
+            activities={activities}
+            authUser={props.authUser}
+            setOpenSnackbar={setOpenSnackbar}
+            setSnackbarMsg={setSnackbarMsg}
+            editActivity={editActivity}
+            setEditing={setEditing}
+          />
+        </Paper>
+      </Grid>
+      <Snackbar
+        anchorOrigin={{
+          vertical: "bottom",
+          horizontal: "right",
+        }}
+        open={openSnackbar}
+        message={snackbarMsg}
+      />
     </Grid>
   );
 }
