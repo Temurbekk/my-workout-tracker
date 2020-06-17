@@ -9,82 +9,87 @@ import ActivityList from "../ActivityList/index";
 import EditActivity from "../EditActivity/EditActivity";
 
 function Calendar(props) {
-  const { firebase, authUser } = props;
-
-  let defaultSelectedDay = {
-    day: moment().format("D"),
-    month: moment().month(),
-  };
-
-  /*** HOOKS ***/
-  const [dateObject, setdateObject] = useState(moment());
-  const [showMonthTable, setShowMonthTable] = useState(false);
-  const [selectedDay, setSelected] = useState(defaultSelectedDay);
-
-  /*** CALENDAR HEAD ***/
-  const allMonths = moment.months();
-  const currentMonth = () => dateObject.format("MMMM");
-  const currentYear = () => dateObject.format("YYYY");
-
-  const setMonth = (month) => {
-    let monthNo = allMonths.indexOf(month);
-    let newDateObject = Object.assign({}, dateObject);
-    newDateObject = moment(dateObject).set("month", monthNo);
-    setdateObject(newDateObject);
-    setShowMonthTable(false);
-  };
-
-  const toggleMonthSelect = () => setShowMonthTable(!showMonthTable);
-
-  /*** CALENDAR BODY ***/
-  const setSelectedDay = (day) => {
-    setSelected({
-      day,
-      month: currentMonthNum(),
-    });
-    // Later refresh data
-  };
-
-  const currentMonthNum = () => dateObject.month();
-  const daysInMonth = () => dateObject.daysInMonth();
-  const currentDay = () => dateObject.format("D");
-  const actualMonth = () => moment().format("MMMM");
-
-  const firstDayOfMonth = () => moment(dateObject).startOf("month").format("d");
-
-  const [openSnackbar, setOpenSnackbar] = React.useState(false);
-  const [snackbarMsg, setSnackbarMsg] = React.useState(null);
-
-  /*** ACTIVITY LIST ***/
-  const [activities, setActivities] = useState(true);
-  const [loading, setLoading] = useState([]);
-
-  const retrieveData = () => {
-    let queryDate = `${selectedDay.day}-${selectedDay.month}-${selectedDay.year}`;
-
-    let ref = firebase.db.ref().child(`users/${authUser.uid}/activities`);
-    ref
-      .orderByChild("date")
-      .equalTo(queryDate)
-      .on("value", (snapshot) => {
-        let data = snapshot.val();
-        setActivities(data);
-        setLoading(false);
-      });
-  };
-
-  useEffect(() => retrieveData(), [selectedDay]);
-
-  /*** EDIT AN ACTIVITY ***/
-  const [editing, setEditing] = useState(false);
-  const [activity, setActivity] = useState(null);
-  const [activityKey, setActivityKey] = useState(null);
-
-  const editActivity = (activity, i) => {
-    setActivityKey(Object.keys(activities)[i]);
-    setEditing(true);
-    setActivity(activity);
-  };
+  const {firebase, authUser} = props;
+    let defaultSelectedDay = {
+        day: moment().format("D"),
+        month: moment().month()
+    };
+    /*** HOOKS ***/
+    const [dateObject, setdateObject] = useState(moment());
+    const [showMonthTable, setShowMonthTable] = useState(false);
+    const [selectedDay, setSelected] = useState(defaultSelectedDay);
+    // Later add hook for active days from database
+    /*** CALENDAR HEAD ***/
+    const allMonths = moment.months();
+    const currentMonth = () => dateObject.format("MMMM");
+    const currentYear = () => dateObject.format("YYYY");
+    const setMonth = month => {
+        let monthNo = allMonths.indexOf(month);
+        let newDateObject = Object.assign({}, dateObject);
+        newDateObject = moment(dateObject).set("month", monthNo);
+        setdateObject(newDateObject);
+        setShowMonthTable(false);
+    }
+    const toggleMonthSelect = () => setShowMonthTable(!showMonthTable);
+    /*** CALENDAR BODY ***/
+    const setSelectedDay = day => {
+        setSelected({
+                day,
+                month: currentMonthNum()
+        });
+         // Later refresh data
+    };
+    const currentMonthNum = () => dateObject.month();
+    const daysInMonth = () => dateObject.daysInMonth();
+    const currentDay = () => dateObject.format("D");
+    const actualMonth = () => moment().format("MMMM");
+    const firstDayOfMonth = () => moment(dateObject).startOf("month").format("d");
+    /*** ADDING AN ACTIVITY ***/
+    const [openSnackbar, setOpenSnackbar] = useState(false);
+    const [snackbarMsg, setSnackbarMsg] = useState(null);
+    /*** ACTIVITY LIST ***/
+    const [activities, setActivities] = useState(true);
+    const [loading, setLoading] = useState([]);
+    const [activeDays, setActiveDays] = useState([]);
+    const retrieveData = () => {
+        let queryDate = `${selectedDay.day}-${selectedDay.month}-${selectedDay.year}`;
+        let ref = firebase.db.ref().child(`users/${authUser.uid}/activities`);
+        ref.orderByChild("date").equalTo(queryDate).on("value", snapshot => {
+            let data = snapshot.val();
+            setActivities(data);
+            console.log(data);
+            setLoading(false);
+            // setEditing(false); Add later
+        });
+        // Update active days
+        retrieveActiveDays();
+    };
+    const retrieveActiveDays = () => {
+        let ref = firebase.db.ref().child(`users/${authUser.uid}/activities`);
+        ref.on("value", snapshot => {
+             let data = snapshot.val();
+            //  console.log(data);
+            const values = Object.values(snapshot.val());
+            // Store all active day/month combinations in array for calendar
+            const arr = values.map(obj => {
+                return obj.date.length === 8
+                ? obj.date.slice(0,3)
+                : obj.date.slice(0,4)
+            });
+            console.log(arr);
+            setActiveDays(arr);
+        });
+    }
+    useEffect(() => retrieveData(), [selectedDay]);
+    /*** EDIT AN ACTIVITY ***/
+    const [editing, setEditing] = useState(false);
+    const [activity, setActivity] = useState(null);
+    const [activityKey, setActivityKey] = useState(null);
+    const editActivity = (activity, i) => {
+        setActivityKey(Object.keys(activities)[i]);
+        setEditing(true);
+        setActivity(activity);
+    }
 
   return (
     <Grid container spacing={3}>
