@@ -102,13 +102,14 @@ function AddActivity(props) {
             name="type"
             onChange={handleChange}
           >
-            <MenuItem value={1}>Lifting Weights</MenuItem>
-            <MenuItem value={2}>Running</MenuItem>
-            <MenuItem value={3}>Cycling</MenuItem>
+            <MenuItem value={1}>Weight Training</MenuItem>
+            <MenuItem value={2}>Cardio</MenuItem>
+            <MenuItem value={3}>Calisthenics</MenuItem>
+            <MenuItem value={4}>Cross Training</MenuItem>
           </Select>
         </div>
         <Typography id="discrete-slider" gutterBottom>
-          Duration
+          Duration in Minutes
         </Typography>
         <Slider
           defaultValue={activity.duration}

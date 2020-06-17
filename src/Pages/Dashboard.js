@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { AuthUserContext, withAuthentication } from "../Components/Session";
-import { withRouter, useRouteMatch } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 
 import {
   clsx,
@@ -13,7 +13,6 @@ import {
   Badge,
   Container,
   MenuIcon,
-  NotificationsIcon,
 } from "../MaterialUI";
 
 import useStyles from "../config/theme.dashboard";
@@ -22,11 +21,10 @@ import Sidebar from "../Components/Sidebar";
 import Calendar from "../Components/Calendar";
 
 function Dashboard(props) {
-  let match = useRouteMatch();
 
   const classes = useStyles();
 
-  const [open, setOpen] = React.useState(true);
+  const [open, setOpen] = useState(true);
 
   const handleDrawerOpen = () => setOpen(true);
   const handleDrawerClose = () => setOpen(false);
@@ -69,11 +67,10 @@ function Dashboard(props) {
                   Dashboard
                 </Typography>
                 <IconButton color="inherit">
-                  <Badge badgeContent={4} color="secondary">
+                  <Badge badgeContent={0} color="secondary">
                     <Typography component="p" style={{ paddingRight: "15px" }}>
-                      username
+                      Username
                     </Typography>
-                    <NotificationsIcon />
                   </Badge>
                 </IconButton>
               </Toolbar>
@@ -98,7 +95,12 @@ function Dashboard(props) {
             </main>
           </div>
         ) : (
-          <p>Not authorized.</p>
+          <div>
+          <p>Not authorized. Please sign in!</p>
+          <Link to="/signIn" variant="body2">
+                {"Sign In"}
+          </Link>
+          </div>
         )
       }
     </AuthUserContext.Consumer>
