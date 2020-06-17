@@ -65,7 +65,8 @@ function Calendar(props) {
     let ref = firebase.db.ref().child(`users/${authUser.uid}/activities`);
     ref.on("value", snapshot => {
         let data = snapshot.val();
-        const values = Object.values(data);
+        if(data != null){
+          const values = Object.values(data);
         // Store all active day/month combinations in array for calendar
         const arr = values.map(obj => {
             return obj.date.length === 8
@@ -73,6 +74,7 @@ function Calendar(props) {
             : obj.date.slice(0,4)
         });
         setActiveDays(arr);
+        }
     });
     }
   useEffect(() => retrieveData(), [selectedDay]);
@@ -114,7 +116,7 @@ function Calendar(props) {
           {editing ? (
             <>
               <h3>
-                Edit activity on {selectedDay.day}-{selectedDay.month + 1}{" "}
+                Edit activity on {selectedDay.month + 1}-{selectedDay.day}{" "}
               </h3>
               <EditActivity
                 activity={activity}
@@ -129,7 +131,7 @@ function Calendar(props) {
           ) : (
             <>
               <h3>
-                Add activity on {selectedDay.day}-{selectedDay.month + 1}{" "}
+                Add activity on {selectedDay.month + 1}-{selectedDay.day}{" "}
               </h3>
               <AddActivity
                 selectedDay={selectedDay}
