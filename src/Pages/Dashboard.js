@@ -21,7 +21,6 @@ import Sidebar from "../Components/Sidebar";
 import Calendar from "../Components/Calendar";
 
 function Dashboard(props) {
-
   const classes = useStyles();
 
   const [open, setOpen] = useState(true);
@@ -96,10 +95,10 @@ function Dashboard(props) {
           </div>
         ) : (
           <div>
-          <p>Not authorized. Please sign in!</p>
-          <Link to="/signIn" variant="body2">
-                {"Sign In"}
-          </Link>
+            <p>Not authorized. Please sign in!</p>
+            <Link to="/signIn" variant="body2">
+              {"Sign In"}
+            </Link>
           </div>
         )
       }
