@@ -1,5 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router } from "react-router-dom";
+import { ThemeProvider } from "@material-ui/core/styles";
+import theme from "./config/theme.config";
 
 import "./App.css";
 import Routes from "./Components/Routes";
@@ -8,7 +10,9 @@ function App() {
   return (
     <>
       <Router>
-        <Routes />
+        <ThemeProvider theme={theme}>
+          <Routes />
+        </ThemeProvider>
       </Router>
     </>
   );
