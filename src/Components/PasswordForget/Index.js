@@ -11,19 +11,25 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import Snackbar from "@material-ui/core/Snackbar";
 
 function PasswordForget(props) {
+
   const [open, setOpen] = useState(false);
   const [openAlert, setOpenAlert] = useState(false);
+  const [state, setState] = useState({ email: "", error: null });
+
   const handleClickOpen = () => {
     setOpen(true);
   };
   const handleClose = () => {
     setOpen(false);
   };
-  const [state, setState] = useState({ email: "", error: null });
+
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setState({ ...state, [name]: value });
   };
+
+
   const handleSubmit = () => {
     props.firebase
       .doPasswordReset(state.email)
@@ -36,7 +42,12 @@ function PasswordForget(props) {
         setState({ error });
       });
   };
+
+
   const isInvalid = state.email === "";
+
+
+  
   return (
     <div>
       <Link to="/signIn" onClick={handleClickOpen}>

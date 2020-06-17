@@ -22,7 +22,7 @@ class Firebase {
     this.db = app.database();
   }
 
-  /*** Authentication  ***/
+  // Authentication from firebase
   doCreateUserWithEmailAndPassword = (email, password) =>
     this.auth.createUserWithEmailAndPassword(email, password);
 
@@ -33,8 +33,9 @@ class Firebase {
 
   doPasswordReset = (email) => this.auth.sendPasswordResetEmail(email);
 
-  user = uid => this.db.ref(`users/${uid}`);
   users = () => this.db.ref('users');
+  user = uid => this.db.ref(`users/${uid}`);
+  
 
   addActivity = (uid, activity) => {
     const ref = this.db.ref().child(`users/${uid}/activities`);
@@ -44,13 +45,11 @@ class Firebase {
   updateActivity = (uid, activity, activityKey) => {
     const ref = this.db.ref().child(`users/${uid}/activities/${activityKey}`);
     ref.update(activity);
-}
+  }
 
 
 }
 
 export default Firebase;
 
-// // Initialize Firebase
-// firebase.initializeApp(firebaseConfig);
-// firebase.analytics();
+

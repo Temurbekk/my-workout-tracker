@@ -2,9 +2,7 @@ import React, { useState, useEffect } from "react";
 import moment from "moment";
 
 import Grid from "@material-ui/core/Grid";
-
 import Snackbar from "@material-ui/core/Snackbar";
-
 import CalendarBody from "./CalendarBody";
 import CalendarHead from "./CalendarHead";
 import Paper from "@material-ui/core/Paper";
@@ -23,7 +21,6 @@ function Calendar(props) {
   const [dateObject, setdateObject] = useState(moment());
   const [showMonthTable, setShowMonthTable] = useState(false);
   const [selectedDay, setSelected] = useState(defaultSelectedDay);
-  // Later add hook for active days from database
 
   /*** CALENDAR HEAD ***/
   const allMonths = moment.months();
@@ -117,7 +114,7 @@ function Calendar(props) {
         <Paper className="paper">
           <>
             <h3>
-              Add activity on {selectedDay.day}-{selectedDay.month + 1}{" "}
+              Add activity on {selectedDay.month + 1}-{selectedDay.day}{" "}
             </h3>
             <AddActivity
               selectedDay={selectedDay}
