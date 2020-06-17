@@ -80,6 +80,17 @@ const retrieveData = () => {
 
 useEffect(() => retrieveData());
 
+ /*** EDIT AN ACTIVITY ***/
+ const [editing, setEditing] = useState(false);
+ const [activity, setActivity] = useState(null);
+ const [activityKey, setActivityKey] = useState(null);
+
+ const editActivity = (activity, i) => {
+     setActivityKey(Object.keys(activities)[i]);
+     setEditing(true);
+     setActivity(activity);
+ }
+
   return (
     <Grid container spacing={3}>
       <Grid item xs={12} md={8} lg={9}>
@@ -125,6 +136,8 @@ useEffect(() => retrieveData());
         authUser={props.authUser}
         setOpenSnackbar={setOpenSnackbar}
         setSnackbarMsg={setSnackbarMsg}
+        editActivity={editActivity}
+        setEditing={setEditing}
     />
     </Paper>
 </Grid>
