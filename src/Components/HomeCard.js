@@ -2,7 +2,7 @@ import React from "react";
 
 function HomeCard(props) {
   return (
-    <div className="columns is-mobile is-centered is-vcentered">
+    <div className="columns is-mobile is-centered">
       <div className="column">
         <img src={props.img} alt="" style={{ height: "25em", width: "45em" }} />
       </div>
