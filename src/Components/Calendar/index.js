@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from "react";
 import moment from "moment";
+import { Grid, Snackbar, Paper } from "../../MaterialUI";
 
-import Grid from "@material-ui/core/Grid";
-import Snackbar from "@material-ui/core/Snackbar";
 import CalendarBody from "./CalendarBody";
 import CalendarHead from "./CalendarHead";
-import Paper from "@material-ui/core/Paper";
 import AddActivity from "../AddActivity/AddActivity";
 import ActivityList from "../ActivityList/index";
 
