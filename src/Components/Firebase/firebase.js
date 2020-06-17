@@ -39,7 +39,14 @@ class Firebase {
   addActivity = (uid, activity) => {
     const ref = this.db.ref().child(`users/${uid}/activities`);
     ref.push(activity);
-};
+  };
+
+  updateActivity = (uid, activity, activityKey) => {
+    const ref = this.db.ref().child(`users/${uid}/activities/${activityKey}`);
+    ref.update(activity);
+}
+
+
 }
 
 export default Firebase;
