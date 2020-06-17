@@ -15,10 +15,14 @@ export default function Navbar() {
             FitPal
           </Typography>
           <Button color="inherit">
-            <Link className={classes.link}>Sign In</Link>
+            <Link to="signIn" className={classes.link}>
+              Sign In
+            </Link>
           </Button>
           <Button color="inherit">
-            <Link className={classes.link}>Sign Up</Link>
+            <Link to="/signUp" className={classes.link}>
+              Sign Up
+            </Link>
           </Button>
         </Toolbar>
       </AppBar>
