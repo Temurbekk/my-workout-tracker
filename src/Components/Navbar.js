@@ -1,15 +1,27 @@
 import React from "react";
+import { AppBar, Toolbar, Typography, Button } from "../MaterialUI";
 import { Link } from "react-router-dom";
 
-function Navbar() {
+import useStyles from "../config/theme.navbar";
+
+export default function Navbar() {
+  const classes = useStyles();
+
   return (
-    <div>
-      <nav>
-        <Link to="/signIn">SignIn</Link>
-        <Link to="/signUp">SignUp</Link>
-      </nav>
+    <div className={classes.root}>
+      <AppBar position="static">
+        <Toolbar>
+          <Typography variant="h6" className={classes.title}>
+            FitPal
+          </Typography>
+          <Button color="inherit">
+            <Link className={classes.link}>Sign In</Link>
+          </Button>
+          <Button color="inherit">
+            <Link className={classes.link}>Sign Up</Link>
+          </Button>
+        </Toolbar>
+      </AppBar>
     </div>
   );
 }
-
-export default Navbar;
