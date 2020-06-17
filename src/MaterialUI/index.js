@@ -29,6 +29,12 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
+import DeleteIcon from "@material-ui/icons/Delete";
+import EditIcon from "@material-ui/icons/Edit";
+import Select from "@material-ui/core/Select";
+import MenuItem from "@material-ui/core/MenuItem";
+import FormControl from "@material-ui/core/FormControl";
+import Slider from "@material-ui/core/Slider";
 
 export {
   Avatar,
@@ -62,4 +68,10 @@ export {
   TableHead,
   TableRow,
   ArrowDropDownIcon,
+  DeleteIcon,
+  EditIcon,
+  Select,
+  MenuItem,
+  FormControl,
+  Slider,
 };
