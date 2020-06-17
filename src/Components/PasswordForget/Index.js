@@ -1,17 +1,19 @@
 import React, { useState } from "react";
 import { withFirebase } from "../Firebase";
 import { Link } from "react-router-dom";
-import Button from "@material-ui/core/Button";
-import TextField from "@material-ui/core/TextField";
-import Dialog from "@material-ui/core/Dialog";
-import DialogActions from "@material-ui/core/DialogActions";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
-import DialogTitle from "@material-ui/core/DialogTitle";
-import Snackbar from "@material-ui/core/Snackbar";
+
+import {
+  Button,
+  TextField,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  Snackbar,
+} from "../../MaterialUI";
 
 function PasswordForget(props) {
-
   const [open, setOpen] = useState(false);
   const [openAlert, setOpenAlert] = useState(false);
   const [state, setState] = useState({ email: "", error: null });
@@ -23,12 +25,10 @@ function PasswordForget(props) {
     setOpen(false);
   };
 
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setState({ ...state, [name]: value });
   };
-
 
   const handleSubmit = () => {
     props.firebase
@@ -43,11 +43,8 @@ function PasswordForget(props) {
       });
   };
 
-
   const isInvalid = state.email === "";
 
-
-  
   return (
     <div>
       <Link to="/signIn" onClick={handleClickOpen}>

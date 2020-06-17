@@ -29,8 +29,43 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
+import DeleteIcon from "@material-ui/icons/Delete";
+import EditIcon from "@material-ui/icons/Edit";
+import Select from "@material-ui/core/Select";
+import MenuItem from "@material-ui/core/MenuItem";
+import FormControl from "@material-ui/core/FormControl";
+import Slider from "@material-ui/core/Slider";
+
+import ListItem from "@material-ui/core/ListItem";
+import ListItemIcon from "@material-ui/core/ListItemIcon";
+import ListItemText from "@material-ui/core/ListItemText";
+import ListSubheader from "@material-ui/core/ListSubheader";
+import EventNoteIcon from "@material-ui/icons/EventNote";
+import ExitToAppIcon from "@material-ui/icons/ExitToApp";
+import SettingsIcon from "@material-ui/icons/Settings";
+import Drawer from "@material-ui/core/Drawer";
+import List from "@material-ui/core/List";
+import Divider from "@material-ui/core/Divider";
+import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 
 export {
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  ListSubheader,
+  EventNoteIcon,
+  ExitToAppIcon,
+  SettingsIcon,
+  Drawer,
+  Divider,
+  ChevronLeftIcon,
+  Select,
+  MenuItem,
+  FormControl,
+  Slider,
+  DeleteIcon,
+  EditIcon,
   Avatar,
   Button,
   CssBaseline,
