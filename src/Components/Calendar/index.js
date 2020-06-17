@@ -6,6 +6,7 @@ import CalendarBody from "./CalendarBody";
 import CalendarHead from "./CalendarHead";
 import AddActivity from "../AddActivity/AddActivity";
 import ActivityList from "../ActivityList/index";
+import EditActivity from "../EditActivity/EditActivity";
 
 function Calendar(props) {
   const { firebase, authUser } = props;
@@ -108,19 +109,37 @@ function Calendar(props) {
           weekdays={moment.weekdays()}
         />
       </Grid>
+
       <Grid item xs={12} md={4} lg={3}>
         <Paper className="paper">
-          <>
-            <h3>
-              Add activity on {selectedDay.month + 1}-{selectedDay.day}{" "}
-            </h3>
-            <AddActivity
-              selectedDay={selectedDay}
-              authUser={props.authUser}
-              setOpenSnackbar={setOpenSnackbar}
-              setSnackbarMsg={setSnackbarMsg}
-            />
-          </>
+          {editing ? (
+            <>
+              <h3>
+                Edit activity on {selectedDay.day}-{selectedDay.month + 1}{" "}
+              </h3>
+              <EditActivity
+                activity={activity}
+                activityKey={activityKey}
+                selectedDay={selectedDay}
+                authUser={props.authUser}
+                setEditing={setEditing}
+                setOpenSnackbar={setOpenSnackbar}
+                setSnackbarMsg={setSnackbarMsg}
+              />
+            </>
+          ) : (
+            <>
+              <h3>
+                Add activity on {selectedDay.day}-{selectedDay.month + 1}{" "}
+              </h3>
+              <AddActivity
+                selectedDay={selectedDay}
+                authUser={props.authUser}
+                setOpenSnackbar={setOpenSnackbar}
+                setSnackbarMsg={setSnackbarMsg}
+              />
+            </>
+          )}
         </Paper>
       </Grid>
       <Grid item xs={12} md={7}>
