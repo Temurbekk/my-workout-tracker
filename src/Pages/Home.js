@@ -1,61 +1,51 @@
 import React from "react";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import Typography from "@material-ui/core/Typography";
+import Container from "@material-ui/core/Container";
 import Navbar from "../Components/Navbar";
+import tileData from "./ImageData/tileData";
+import HomeCard from "../Components/HomeCard";
+import useStyles from "../config/theme.home";
 
-function Home() {
+export default function Home() {
+  const classes = useStyles();
+
   return (
-    <div>
+    <>
+      <CssBaseline />
       <Navbar />
-      <div style={{ padding: "10px" }}>
-        <img
-          src="https://github.com/Temurbekk/my-workout-tracker/blob/master/assets/img1.png?raw=true"
-          style={{
-            width: "300px",
-            height: "300px",
-            objectFit: "fit",
-            display: "block",
-            boxShadow: "0 10px 10px rgba(0,0,0,.7)",
-          }}
-        />
-      </div>
-      <div style={{ padding: "10px" }}>
-        <img
-          src="https://github.com/Temurbekk/my-workout-tracker/blob/master/assets/img2.png?raw=true"
-          style={{
-            width: "300px",
-            height: "300px",
-            objectFit: "fit",
-            display: "block",
-            boxShadow: "0 10px 10px rgba(0,0,0,.7)",
-          }}
-        />
-      </div>
-      <div style={{ padding: "10px" }}>
-        <img
-          src="https://github.com/Temurbekk/my-workout-tracker/blob/master/assets/img3.png?raw=true"
-          style={{
-            width: "300px",
-            height: "300px",
-            objectFit: "fit",
-            display: "block",
-            boxShadow: "0 10px 10px rgba(0,0,0,.7)",
-          }}
-        />
-      </div>
-      <div style={{ padding: "10px" }}>
-        <img
-          src="https://github.com/Temurbekk/my-workout-tracker/blob/master/assets/img4.png?raw=true"
-          style={{
-            width: "300px",
-            height: "300px",
-            objectFit: "fit",
-            display: "block",
-            boxShadow: "0 10px 10px rgba(0,0,0,.7)",
-          }}
-        />
-      </div>
-      HOMEPAGE BEFORE SIGN IN
-    </div>
+      <main>
+        <div className={classes.heroContent}>
+          <Container maxWidth="sm">
+            <Typography
+              component="h3"
+              variant="h3"
+              align="center"
+              color="textPrimary"
+              gutterBottom
+            >
+              A better workout app
+            </Typography>
+            <Typography
+              variant="h6"
+              align="center"
+              color="textSecondary"
+              paragraph
+            >
+              -FitPal is an application that allows users to set their workouts
+              for certain days. <br /> -Create your dream workout plan to get
+              your dream body
+            </Typography>
+          </Container>
+        </div>
+        {tileData.map((tile) => (
+          <HomeCard
+            img={tile.img}
+            title={tile.title}
+            description={tile.description}
+          />
+        ))}
+      </main>
+    </>
   );
 }
-
-export default Home;
