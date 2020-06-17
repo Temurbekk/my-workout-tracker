@@ -126,7 +126,7 @@ function Calendar(props) {
       <Grid item xs={12} md={7}>
         <Paper className="paper">
           <h3>
-            Activities on {selectedDay.day}-{selectedDay.month + 1}
+            Activities on {selectedDay.month + 1}-{selectedDay.day}
           </h3>
           <ActivityList
             loading={loading}
