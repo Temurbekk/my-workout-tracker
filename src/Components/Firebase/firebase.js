@@ -5,15 +5,17 @@ import 'firebase/database';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyDf6rCpZy59bl9L1uJ3hVeohQj27w4R60g",
-  authDomain: "my-workout-tracker-8763c.firebaseapp.com",
-  databaseURL: "https://my-workout-tracker-8763c.firebaseio.com",
-  projectId: "my-workout-tracker-8763c",
-  storageBucket: "my-workout-tracker-8763c.appspot.com",
-  messagingSenderId: "64284197756",
-  appId: "1:64284197756:web:64e68a0a0754b2ab2a9af9",
-  measurementId: "G-8S95KVBRYT",
+  apiKey: process.env.REACT_APP_API_KEY,
+  authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+  databaseURL: process.env.REACT_APP_DATABASE_URL,
+  projectId: process.env.REACT_APP_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_APP_ID,
+  measurementId: process.env.REACT_APP_MEASUREMENT_ID,
 };
+
+
 
 class Firebase {
   constructor() {
