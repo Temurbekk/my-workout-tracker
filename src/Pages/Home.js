@@ -33,8 +33,8 @@ export default function Home() {
               paragraph
             >
               -FitPal is an application that allows users to set their workouts
-              for certain days. <br /> -Create your dream workout plan to get
-              your dream body
+              for specific days. <br /> -Create your dream workout plan to get
+              your dream body.
             </Typography>
           </Container>
         </div>
