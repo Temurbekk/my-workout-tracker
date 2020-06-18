@@ -28,8 +28,8 @@ class Youtube extends Component {
   this.setState({ videos: response.data.items, selectedVideo: response.data.items[0]});
   }
   render() {
-    const {selectedVideo}=this.state;
-    
+    const {selectedVideo, video}=this.state;
+    console.log("videos", video);
   return (
     
     <div>
@@ -43,7 +43,7 @@ class Youtube extends Component {
               <VideoDetails video={selectedVideo}/>
             </Grid>
             <Grid item xs={4}>
-            <VideoList/>
+            <VideoList videos={video}/>
             </Grid>
           </Grid>
         </Grid>
