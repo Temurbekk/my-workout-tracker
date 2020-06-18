@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 import { Grid } from '@material-ui/core';
 
@@ -8,14 +8,33 @@ import VideoDetails from '../VideoDetails'
 
 import youtube from '../../Api/youtube';
 
-function Youtube() {
+class Youtube extends Component {
+  state = {
+    video: [],
+    selectedVideo: null,
+  }
+  handleSubmit = async (searchTerm) => {
+    const response = await youtube.get('search', {
+      params: {
+        part: "snippet",
+        maxResults: 5,
+        key: process.env.REACT_APP_API_KEY,
+        q: searchTerm,
+      }
+    });
+
+  this.setState({ videos: response.data.items, selectedVideo: response.data.items[0]});
+  }
+  render() {
+
+    
   return (
     <div>
-      <Grid justify="center" container spacing={16}>
+      <Grid justify="center" container spacing={10}>
         <Grid item xs={12}>
-          <Grid container spacing={16}>
+          <Grid container spacing={10}>
             <Grid item xs={12}>
-              <SearchBar />
+              <SearchBar onFormSubmit = {this.handleSubmit}/>
             </Grid>
             <Grid item xs={8}>
               <VideoDetails />
@@ -28,7 +47,7 @@ function Youtube() {
       </Grid>
     </div>
   )
+};
 }
 
 export default Youtube
-
