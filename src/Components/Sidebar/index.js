@@ -11,6 +11,7 @@ import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import clsx from "clsx";
 import Drawer from "@material-ui/core/Drawer";
 import IconButton from "@material-ui/core/IconButton";
+import PlayCircleFilledIcon from "@material-ui/icons/PlayCircleFilled";
 import List from "@material-ui/core/List";
 import Divider from "@material-ui/core/Divider";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
@@ -18,6 +19,9 @@ import useStyles from "../../config/theme.dashboard";
 
 function Sidebar(props) {
   let match = useRouteMatch();
+
+  const openYoutube = () => props.setYoutube(true);
+  const closeYoutube = () => props.setYoutube(false);
 
   const classes = useStyles();
 
@@ -40,12 +44,20 @@ function Sidebar(props) {
       <Divider />
       <List>
         <ListSubheader inset>Menu</ListSubheader>
-        <Link to={`${match.url}`}>
+        <Link to={`${match.url}`} onClick={closeYoutube}>
           <ListItem button>
             <ListItemIcon>
               <EventNoteIcon />
             </ListItemIcon>
             <ListItemText primary="Workouts" />
+          </ListItem>
+        </Link>
+        <Link to={`${match.url}`} onClick={openYoutube}>
+          <ListItem button>
+            <ListItemIcon>
+              <PlayCircleFilledIcon />
+            </ListItemIcon>
+            <ListItemText primary="Search" />
           </ListItem>
         </Link>
       </List>
