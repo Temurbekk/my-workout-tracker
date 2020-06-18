@@ -19,6 +19,11 @@ import useStyles from "../../config/theme.dashboard";
 function Sidebar(props) {
   let match = useRouteMatch();
 
+  const openYoutube = () => props.setYoutube(true);
+  const closeYoutube = () => props.setYoutube(false);
+
+
+
   const classes = useStyles();
 
   return (
@@ -40,12 +45,20 @@ function Sidebar(props) {
       <Divider />
       <List>
         <ListSubheader inset>Menu</ListSubheader>
-        <Link to={`${match.url}`}>
+        <Link to={`${match.url}`} onClick={closeYoutube}>
           <ListItem button>
             <ListItemIcon>
               <EventNoteIcon />
             </ListItemIcon>
             <ListItemText primary="Workouts" />
+          </ListItem>
+        </Link>
+        <Link to={`${match.url}`} onClick={openYoutube}>
+          <ListItem button>
+            <ListItemIcon>
+              <EventNoteIcon />
+            </ListItemIcon>
+            <ListItemText primary="Search" />
           </ListItem>
         </Link>
       </List>
