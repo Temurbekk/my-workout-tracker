@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { AuthUserContext, withAuthentication } from "../Components/Session";
 import { withRouter, Link } from "react-router-dom";
 
+
 import {
   clsx,
   CssBaseline,
@@ -21,6 +22,7 @@ import Sidebar from "../Components/Sidebar";
 import Calendar from "../Components/Calendar";
 
 function Dashboard(props) {
+  
   const classes = useStyles();
 
   const [open, setOpen] = useState(true);
@@ -32,6 +34,8 @@ function Dashboard(props) {
     props.firebase.auth.signOut();
     props.history.push("/");
   };
+
+
 
   return (
     <AuthUserContext.Consumer>
@@ -68,7 +72,7 @@ function Dashboard(props) {
                 <IconButton color="inherit">
                   <Badge badgeContent={0} color="secondary">
                     <Typography component="p" style={{ paddingRight: "15px" }}>
-                      Username
+                      {authUser.email}
                     </Typography>
                   </Badge>
                 </IconButton>
