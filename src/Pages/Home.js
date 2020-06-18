@@ -38,12 +38,14 @@ export default function Home() {
             </Typography>
           </Container>
         </div>
-        {tileData.map((tile) => (
-          <HomeCard
-            img={tile.img}
-            title={tile.title}
-            description={tile.description}
-          />
+        {tileData.map((tile, i) => (
+          <div key={i}>
+            <HomeCard
+              img={tile.img}
+              title={tile.title}
+              description={tile.description}
+            />
+          </div>
         ))}
       </main>
     </>
