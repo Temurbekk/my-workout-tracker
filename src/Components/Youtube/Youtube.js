@@ -1,6 +1,5 @@
-import React, { Component } from 'react';
-
-import { Grid } from '@material-ui/core';
+import React, { useState } from "react";
+import { Grid } from "@material-ui/core";
 
 import SearchBar from '../SearchBar'
 import VideoDetails from '../VideoDetails'
@@ -8,13 +7,30 @@ import VideoList from '../VideoList'
 
 import youtube from '../../Api/youtube';
 
-class Youtube extends Component {
-  state = {
-    video: [],
-    selectedVideo: null,
-  }
-  handleSubmit = async (searchTerm) => {
-    const response = await youtube.get('search', {
+export default () => {
+  const [videos, setVideos] = useState([]);
+  const [selectedVideo, setSelectedVideo] = useState(null);
+
+  return (
+    <Grid style={{ justifyContent: "center" }} container spacing={10}>
+      <Grid item xs={11}>
+        <Grid container spacing={10}>
+          <Grid item xs={12}>
+            <SearchBar onSubmit={handleSubmit} />
+          </Grid>
+          <Grid item xs={8}>
+            <VideoDetails video={selectedVideo} />
+          </Grid>
+          <Grid item xs={4}>
+            <VideoList videos={videos} onVideoSelect={setSelectedVideo} />
+          </Grid>
+        </Grid>
+      </Grid>
+    </Grid>
+  );
+
+  async function handleSubmit(searchTerm) {
+    const { data: { items: videos } } = await youtube.get("search", {
       params: {
         part: "snippet",
         maxResults: 5,
@@ -23,34 +39,7 @@ class Youtube extends Component {
       }
     });
 
-    console.log(response)
-
-  this.setState({ videos: response.data.items, selectedVideo: response.data.items[0]});
+    setVideos(videos);
+    setSelectedVideo(videos[0]);
   }
-  render() {
-    const {selectedVideo, video}=this.state;
-    console.log("videos", video);
-  return (
-    
-    <div>
-      <Grid justify="center" container spacing={10}>
-        <Grid item xs={12}>
-          <Grid container spacing={10}>
-            <Grid item xs={12}>
-              <SearchBar onFormSubmit = {this.handleSubmit}/>
-            </Grid>
-            <Grid item xs={8}>
-              <VideoDetails video={selectedVideo}/>
-            </Grid>
-            <Grid item xs={4}>
-            <VideoList videos={video}/>
-            </Grid>
-          </Grid>
-        </Grid>
-      </Grid>
-    </div>
-  )
-};
 }
-
-export default Youtube

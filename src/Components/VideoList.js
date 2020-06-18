@@ -1,14 +1,20 @@
-import React from 'react';
+import React from "react";
+import { Grid } from "@material-ui/core";
 
-import {Grid, Paper, Typography} from '@material-ui/core';
+import VideoItem from "./VideoItem";
 
-import VideoItem from './VideoItem';
+export default ({ videos, onVideoSelect }) => {
+  const listOfVideos = videos.map(video => (
+    <VideoItem
+      onVideoSelect={onVideoSelect}
+      key={video.id.videoId}
+      video={video}
+    />
+  ));
 
-const VideoList = ({videos}) => {
- console.log(videos);
- const listOfVideos = videos.map((video) => <VideoItem/> )
-    
- return (listOfVideos);
-
+  return (
+    <Grid container spacing={10}>
+      {listOfVideos}
+    </Grid>
+  );
 }
-export default VideoList;
