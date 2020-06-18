@@ -20,15 +20,18 @@ import useStyles from "../config/theme.dashboard";
 
 import Sidebar from "../Components/Sidebar";
 import Calendar from "../Components/Calendar";
+import Youtube from "../Components/Youtube/Youtube";
 
 function Dashboard(props) {
   
   const classes = useStyles();
 
   const [open, setOpen] = useState(true);
+  const [youtube, setYoutube] = useState(false);
 
   const handleDrawerOpen = () => setOpen(true);
   const handleDrawerClose = () => setOpen(false);
+
 
   const signOut = () => {
     props.firebase.auth.signOut();
@@ -83,6 +86,7 @@ function Dashboard(props) {
               signOut={signOut}
               open={open}
               handleDrawerClose={handleDrawerClose}
+              setYoutube={setYoutube}
             />
 
             <main
@@ -93,7 +97,8 @@ function Dashboard(props) {
             >
               <div className={classes.appBarSpacer} />
               <Container maxWidth="xl" className={classes.container}>
-                <Calendar firebase={props.firebase} authUser={authUser} />
+                {youtube ? <Youtube /> : <Calendar firebase={props.firebase} authUser={authUser} />
+                }
               </Container>
             </main>
           </div>
