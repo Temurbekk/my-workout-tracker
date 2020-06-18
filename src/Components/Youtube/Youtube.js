@@ -4,7 +4,7 @@ import { Grid } from '@material-ui/core';
 
 import SearchBar from '../SearchBar'
 import VideoDetails from '../VideoDetails'
-// import VideoList from './Components/VideoList'
+import VideoList from '../VideoList'
 
 import youtube from '../../Api/youtube';
 
@@ -43,7 +43,7 @@ class Youtube extends Component {
               <VideoDetails video={selectedVideo}/>
             </Grid>
             <Grid item xs={4}>
-              {/* Video List */}
+            <VideoList/>
             </Grid>
           </Grid>
         </Grid>

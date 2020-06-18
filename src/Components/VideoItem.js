@@ -7,3 +7,5 @@ const VideoItem = () => {
         Video Item
     </h1>
 }
+
+export default VideoItem;
