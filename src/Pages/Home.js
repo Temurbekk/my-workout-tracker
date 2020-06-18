@@ -3,7 +3,7 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 import Navbar from "../Components/Navbar";
-import tileData from "./ImageData/tileData";
+import tileData from "../ImageData/tileData";
 import HomeCard from "../Components/HomeCard";
 import useStyles from "../config/theme.home";
 
@@ -33,8 +33,8 @@ export default function Home() {
               paragraph
             >
               -FitPal is an application that allows users to set their workouts
-              for certain days. <br /> -Create your dream workout plan to get
-              your dream body
+              for specific days. <br /> -Create your dream workout plan to get
+              your dream body.
             </Typography>
           </Container>
         </div>
