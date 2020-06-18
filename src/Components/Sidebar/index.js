@@ -11,6 +11,7 @@ import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import clsx from "clsx";
 import Drawer from "@material-ui/core/Drawer";
 import IconButton from "@material-ui/core/IconButton";
+import PlayCircleFilledIcon from "@material-ui/icons/PlayCircleFilled";
 import List from "@material-ui/core/List";
 import Divider from "@material-ui/core/Divider";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
@@ -21,8 +22,6 @@ function Sidebar(props) {
 
   const openYoutube = () => props.setYoutube(true);
   const closeYoutube = () => props.setYoutube(false);
-
-
 
   const classes = useStyles();
 
@@ -56,7 +55,7 @@ function Sidebar(props) {
         <Link to={`${match.url}`} onClick={openYoutube}>
           <ListItem button>
             <ListItemIcon>
-              <EventNoteIcon />
+              <PlayCircleFilledIcon />
             </ListItemIcon>
             <ListItemText primary="Search" />
           </ListItem>
