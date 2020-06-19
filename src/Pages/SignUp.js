@@ -14,7 +14,7 @@ import {
   Container,
 } from "../MaterialUI";
 
-import useStyles from "../config/theme.SignUp";
+import useStyles from "../themes/theme.SignUp";
 
 function SignUp(props) {
   const classes = useStyles();

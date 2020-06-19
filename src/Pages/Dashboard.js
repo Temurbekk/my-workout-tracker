@@ -15,7 +15,7 @@ import {
   MenuIcon,
 } from "../MaterialUI";
 
-import useStyles from "../config/theme.dashboard";
+import useStyles from "../themes/theme.dashboard";
 
 import Sidebar from "../Components/Sidebar";
 import Calendar from "../Components/Calendar";

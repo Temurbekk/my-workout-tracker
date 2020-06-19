@@ -2,7 +2,7 @@ import React from "react";
 import { AppBar, Toolbar, Typography, Button } from "../../MaterialUI";
 import { Link } from "react-router-dom";
 
-import useStyles from "../../config/theme.navbar";
+import useStyles from "../../themes/theme.navbar";
 
 export default function Navbar() {
   const classes = useStyles();

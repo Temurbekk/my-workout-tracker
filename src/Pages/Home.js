@@ -5,7 +5,7 @@ import Container from "@material-ui/core/Container";
 import Navbar from "../Components/Navbar";
 import tileData from "../TileData/tileData";
 import HomeCard from "../Components/HomeCard";
-import useStyles from "../config/theme.home";
+import useStyles from "../themes/theme.home";
 
 export default function Home() {
   const classes = useStyles();
