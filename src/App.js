@@ -1,8 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 import { ThemeProvider } from "@material-ui/core/styles";
-import theme from "./config/theme.config";
-
+import theme from "./themes/theme.config";
 
 import Routes from "./Components/Routes";
 

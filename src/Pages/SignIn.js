@@ -13,7 +13,7 @@ import {
   Container,
 } from "../MaterialUI";
 import PasswordForget from "../Components/PasswordForget/Index";
-import useStyles from "../config/theme.SignIn";
+import useStyles from "../themes/theme.SignIn";
 
 const SignIn = (props) => {
   const classes = useStyles();
