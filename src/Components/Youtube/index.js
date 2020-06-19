@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { Grid } from "@material-ui/core";
 
-import SearchBar from '../SearchBar'
-import VideoDetails from '../VideoDetails'
-import VideoList from '../VideoList'
+import SearchBar from "../SearchBar";
+import VideoDetails from "../VideoDetails";
+import VideoList from "../VideoList";
 
-import youtube from '../../Api/youtube';
+import youtube from "../../Api/youtube";
 
 export default () => {
   const [videos, setVideos] = useState([]);
@@ -30,16 +30,18 @@ export default () => {
   );
 
   async function handleSubmit(searchTerm) {
-    const { data: { items: videos } } = await youtube.get("search", {
+    const {
+      data: { items: videos },
+    } = await youtube.get("search", {
       params: {
         part: "snippet",
         maxResults: 5,
         key: process.env.REACT_APP_API_KEY,
         q: searchTerm,
-      }
+      },
     });
 
     setVideos(videos);
     setSelectedVideo(videos[0]);
   }
-}
+};

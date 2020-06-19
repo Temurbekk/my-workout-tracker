@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import { AuthUserContext, withAuthentication } from "../Components/Session";
 import { withRouter, Link } from "react-router-dom";
 
-
 import {
   clsx,
   CssBaseline,
@@ -20,10 +19,9 @@ import useStyles from "../config/theme.dashboard";
 
 import Sidebar from "../Components/Sidebar";
 import Calendar from "../Components/Calendar";
-import Youtube from "../Components/Youtube/Youtube";
+import Youtube from "../Components/Youtube";
 
 function Dashboard(props) {
-  
   const classes = useStyles();
 
   const [open, setOpen] = useState(true);
@@ -32,13 +30,10 @@ function Dashboard(props) {
   const handleDrawerOpen = () => setOpen(true);
   const handleDrawerClose = () => setOpen(false);
 
-
   const signOut = () => {
     props.firebase.auth.signOut();
     props.history.push("/");
   };
-
-
 
   return (
     <AuthUserContext.Consumer>
@@ -97,8 +92,11 @@ function Dashboard(props) {
             >
               <div className={classes.appBarSpacer} />
               <Container maxWidth="xl" className={classes.container}>
-                {youtube ? <Youtube /> : <Calendar firebase={props.firebase} authUser={authUser} />
-                }
+                {youtube ? (
+                  <Youtube />
+                ) : (
+                  <Calendar firebase={props.firebase} authUser={authUser} />
+                )}
               </Container>
             </main>
           </div>
