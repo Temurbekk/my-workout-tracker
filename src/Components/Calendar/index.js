@@ -44,7 +44,7 @@ function Calendar(props) {
   const [openSnackbar, setOpenSnackbar] = React.useState(false);
   const [snackbarMsg, setSnackbarMsg] = React.useState(null);
   /*** ACTIVITY LIST ***/
-  const [activities, setActivities] = useState(true);
+  const [activities, setActivities] = useState([]);
   const [loading, setLoading] = useState([]);
   const [activeDays, setActiveDays] = useState([]);
   const retrieveData = () => {
@@ -58,25 +58,25 @@ function Calendar(props) {
         setActivities(data);
         setLoading(false);
       });
-      // Update active days
-      retrieveActiveDays();
+    // Update active days
+    retrieveActiveDays();
   };
   const retrieveActiveDays = () => {
     let ref = firebase.db.ref().child(`users/${authUser.uid}/activities`);
-    ref.on("value", snapshot => {
-        let data = snapshot.val();
-        if(data != null){
-          const values = Object.values(data);
+    ref.on("value", (snapshot) => {
+      let data = snapshot.val();
+      if (data != null) {
+        const values = Object.values(data);
         // Store all active day/month combinations in array for calendar
-        const arr = values.map(obj => {
-            return obj.date.length === 8
-            ? obj.date.slice(0,3)
-            : obj.date.slice(0,4)
+        const arr = values.map((obj) => {
+          return obj.date.length === 8
+            ? obj.date.slice(0, 3)
+            : obj.date.slice(0, 4);
         });
         setActiveDays(arr);
-        }
+      }
     });
-    }
+  };
   useEffect(() => retrieveData(), [selectedDay]);
   /*** EDIT AN ACTIVITY ***/
   const [editing, setEditing] = useState(false);

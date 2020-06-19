@@ -11,8 +11,6 @@ import {
   Paper,
   DeleteIcon,
   EditIcon,
-  Button,
-  Grid,
 } from "../../MaterialUI";
 
 function ActivityList(props) {
@@ -23,8 +21,6 @@ function ActivityList(props) {
     setSnackbarMsg,
     setEditing,
   } = props;
-
-  const [clicked, setClicked] = useState(false);
 
   const deleteActivity = (i) => {
     // Get key of activity in firebase
@@ -53,16 +49,6 @@ function ActivityList(props) {
     // stop editing
     setEditing(false);
   };
-
-  const completeActivity = (e) => {
-    setClicked(true);
-  };
-
-  const resumeActivity = (e) => {
-    setClicked(false);
-  };
-
-  const crossStyle = { textDecoration: clicked ? "line-through" : "none" };
 
   return (
     <>
@@ -110,11 +96,6 @@ function ActivityList(props) {
                         style={{ marginLeft: "20px" }}
                       />
                     </TableCell>
-                    {!clicked ? (
-                      <Button onClick={completeActivity}>Complete</Button>
-                    ) : (
-                      <Button onClick={resumeActivity}>Resume</Button>
-                    )}
                   </TableRow>
                 );
               })}
