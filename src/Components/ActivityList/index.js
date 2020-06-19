@@ -60,7 +60,7 @@ function ActivityList(props) {
             <TableHead>
               <TableRow>
                 <TableCell>Name</TableCell>
-                <TableCell>Type</TableCell>
+                <TableCell>Category</TableCell>
                 <TableCell>Duration</TableCell>
                 <TableCell>Actions</TableCell>
               </TableRow>

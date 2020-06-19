@@ -93,7 +93,7 @@ function AddActivity(props) {
         />
         <div style={{ marginTop: "20px", marginBottom: "30px" }}>
           <Typography id="discrete-slider" gutterBottom>
-            Type
+            Category
           </Typography>
           <Select
             labelId="demo-simple-select-label"
