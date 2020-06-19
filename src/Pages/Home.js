@@ -3,7 +3,7 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 import Navbar from "../Components/Navbar";
-import tileData from "../ImageData/tileData";
+import tileData from "../TileData/tileData";
 import HomeCard from "../Components/HomeCard";
 import useStyles from "../config/theme.home";
 
