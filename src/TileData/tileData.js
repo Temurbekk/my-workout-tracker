@@ -3,7 +3,7 @@ const tileData = [
     img:
       "https://github.com/Temurbekk/my-workout-tracker/blob/master/assets/img1.png?raw=true",
     title: "TEST YOUR INTENSITY",
-    description: "Make a record your work out",
+    description: "Make a record of your work out",
   },
   {
     img:
