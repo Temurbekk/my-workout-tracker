@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { withFirebase } from "../Firebase";
 
 import {
@@ -11,6 +11,8 @@ import {
   Paper,
   DeleteIcon,
   EditIcon,
+  Button,
+  Grid,
 } from "../../MaterialUI";
 
 function ActivityList(props) {
@@ -21,6 +23,8 @@ function ActivityList(props) {
     setSnackbarMsg,
     setEditing,
   } = props;
+
+  const [clicked, setClicked] = useState(false);
 
   const deleteActivity = (i) => {
     // Get key of activity in firebase
@@ -49,6 +53,16 @@ function ActivityList(props) {
     // stop editing
     setEditing(false);
   };
+
+  const completeActivity = (e) => {
+    setClicked(true);
+  };
+
+  const resumeActivity = (e) => {
+    setClicked(false);
+  };
+
+  const crossStyle = { textDecoration: clicked ? "line-through" : "none" };
 
   return (
     <>
@@ -86,9 +100,9 @@ function ActivityList(props) {
                 }
                 return (
                   <TableRow key={i}>
-                    <TableCell>{name}</TableCell>
-                    <TableCell>{type}</TableCell>
-                    <TableCell>{duration}</TableCell>
+                    <TableCell style={crossStyle}>{name}</TableCell>
+                    <TableCell style={crossStyle}>{type}</TableCell>
+                    <TableCell style={crossStyle}>{duration}</TableCell>
                     <TableCell>
                       <DeleteIcon onClick={(e) => deleteActivity(i)} />
                       <EditIcon
@@ -96,6 +110,11 @@ function ActivityList(props) {
                         style={{ marginLeft: "20px" }}
                       />
                     </TableCell>
+                    {!clicked ? (
+                      <Button onClick={completeActivity}>Complete</Button>
+                    ) : (
+                      <Button onClick={resumeActivity}>Resume</Button>
+                    )}
                   </TableRow>
                 );
               })}
