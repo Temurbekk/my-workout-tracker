@@ -8,9 +8,9 @@ export default ({ onSubmit }) => {
 
   const onKeyPress = (event) => {
     if (event.key === "Enter") {
-      onSubmit(searchTerm);
+      onSubmit(`${searchTerm} "workout"`);
     }
-  }
+  };
 
   return (
     <Paper elevation={6} style={{ padding: "25px" }}>
@@ -23,4 +23,4 @@ export default ({ onSubmit }) => {
       />
     </Paper>
   );
-}
+};
