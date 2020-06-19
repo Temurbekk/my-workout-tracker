@@ -86,9 +86,9 @@ function ActivityList(props) {
                 }
                 return (
                   <TableRow key={i}>
-                    <TableCell style={crossStyle}>{name}</TableCell>
-                    <TableCell style={crossStyle}>{type}</TableCell>
-                    <TableCell style={crossStyle}>{duration}</TableCell>
+                    <TableCell>{name}</TableCell>
+                    <TableCell>{type}</TableCell>
+                    <TableCell>{duration}</TableCell>
                     <TableCell>
                       <DeleteIcon onClick={(e) => deleteActivity(i)} />
                       <EditIcon
