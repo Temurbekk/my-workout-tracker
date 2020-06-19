@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Grid } from "@material-ui/core";
 
-import SearchBar from "../SearchBar";
-import VideoDetails from "../VideoDetails";
-import VideoList from "../VideoList";
+import SearchBar from "./SearchBar";
+import VideoDetails from "./VideoDetails";
+import VideoList from "./VideoList";
 
 import youtube from "../../Api/youtube";
 
