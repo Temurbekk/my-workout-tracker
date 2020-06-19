@@ -4,7 +4,7 @@ import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 import Navbar from "../Components/Navbar";
 import tileData from "../TileData/tileData";
-import HomeCard from "../Components/HomeCard";
+import HomeCard from "../Components/HomeCard/HomeCard";
 import useStyles from "../config/theme.home";
 
 export default function Home() {
