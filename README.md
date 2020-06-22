@@ -4,6 +4,8 @@
 With this app, you can schedule out your workouts, change them up if needed, and look up new exercises or routines all in one spot!
 
 
+Find the deployed app here: https://my-workout-tracker-8763c.web.app/
+
 ### `Schedule`
 
 The app contains a calender where you can alter the select the various days of the month. For every day you select, you're able to add activities that you plan on doing. Every day that you have activities planned is given a green highlight!
